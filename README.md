@@ -5,6 +5,7 @@
 
 - Não há necessidade de instalação de qualquer tipo de servidor (XAMP, WAMP, etc). Programa compilado
 - Necessário realizar instalação do GO e do MongoDB em sua maquina
+- Cria banco de dados com nome Interdisciplinar e importar collection da pasta data.
 
 ## Instalação do MongoDb
 
