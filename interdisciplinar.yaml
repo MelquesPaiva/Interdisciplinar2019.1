@@ -1,0 +1,140 @@
+swagger: "2.0"
+info:
+  description: "API para projeto interdisciplinar da turma de quinto semestre do curso de Engenharia da Computação (Fainor 2019.1)"
+  version: "1.0.0"
+  title: "Análise da integridade de construções com o auxílio de microcontrolador"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/v1"
+tags:
+- name: "Interdisciplinar"
+  description: "Engenharia da Computação 5º Semestre 2019.1"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "https"
+- "http"
+paths:
+  /inter:
+    post:
+      tags:
+      - "inter"
+      summary: "Inserção de dados dos sensores no banco MongoDb"
+      description: ""
+      operationId: "addSensores"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Dados que serão inseridos"
+        required: true
+        schema:
+          $ref: "#/definitions/Sensor"
+      responses:
+        405:
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+    get:
+      tags:
+      - "inter"
+      summary: "Recuperando dados dos sensores no banco MongoDb"
+      description: ""
+      operationId: "getSensores"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Status OK"
+          schema:
+            type: object
+            properties: 
+              data:
+                $ref: '#/definitions/ApiResponse'
+        405:
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"      
+
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Sensor:
+    type: "object"
+    required:
+    - "A0"
+    - "A1"
+    - "A2"
+    - "X"
+    - "Y"
+    - "Z"    
+    properties:
+      A0:
+        type: "number"
+        format: "float64"
+      A1:
+        type: "number"
+        format: "float64"
+      A2:
+        type: "number"
+        format: "float64"
+      X:
+        type: "number"
+        format: "float64"
+      Y:
+        type: "number"
+        format: "float64"
+      Z:
+        type: "number"
+        format: "float64"
+    xml:
+      name: "Pet"
+  ApiResponse:
+    type: "object"
+    properties:
+      A0:
+        type: "integer"
+        format: "int32"
+      A1:
+        type: "integer"
+        format: "int32"
+      A2:
+        type: "integer"
+        format: "int32"
+      X:
+        type: "integer"
+        format: "int32"
+      Y:
+        type: "integer"
+        format: "int32"
+      Z:
+        type: "integer"
+        format: "int32"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

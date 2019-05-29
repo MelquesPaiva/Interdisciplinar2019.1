@@ -15,7 +15,7 @@ type SensorDao struct {
 var db *mgo.Database
 
 const (
-	Collection = "sensores"
+	Collection = "Sensores"
 )
 
 func (sensor *SensorDao) Connect() {
@@ -30,4 +30,9 @@ func (sensor *SensorDao) GetAll() ([]models.Sensor, error) {
 	var movies []models.Sensor
 	err := db.C(Collection).Find(bson.M{}).All(&movies)
 	return movies, err
+}
+
+func (sensor * SensorDao) Create(modelSensor models.Sensor) error {
+	err := db.C(Collection).Insert(modelSensor)
+	return err
 }
