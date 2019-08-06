@@ -27,9 +27,9 @@ func (sensor *SensorDao) Connect() {
 }
 
 func (sensor *SensorDao) GetAll() ([]models.Sensor, error) {
-	var movies []models.Sensor
+	var sensores []models.Sensor
 	err := db.C(Collection).Find(bson.M{}).All(&movies)
-	return movies, err
+	return sensores, err
 }
 
 func (sensor * SensorDao) Create(modelSensor models.Sensor) error {
